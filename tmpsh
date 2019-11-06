@@ -1,0 +1,14 @@
+#!/bin/sh
+# vim: ft=sh
+
+#set -x
+shell=`getent passwd $LOGNAME | cut -d: -f7`
+origin=`pwd`
+basedir=`mktemp -d`
+cd "$basedir"
+$shell
+ret=$?
+rm -rf "$basedir"
+cd "$origin"
+exit $ret
+
